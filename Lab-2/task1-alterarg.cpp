@@ -20,17 +20,8 @@ string methodname(string a)
 
 int main() {
    
-    ifstream inFile;
- 
-
-    inFile.open("print");
-    if (!inFile) {
-        cout << "Unable to open file";
-    }
-    else{
-    	  string datan;
-    	getline (inFile,datan);
-    getline(inFile,poly);
+    string datan,poly;
+cin>>datan>>poly;
     	  int sum=0;
     
     if(datan[0]=='0')
@@ -59,7 +50,7 @@ int main() {
     	string wef =methodname(datan.substr(i,poly.length()-1));
     	datan.replace(i,poly.length()-1,wef);
     	i++;
-    }
+        }
     }
 
     // cout<<datan<<endl;
@@ -73,4 +64,4 @@ int main() {
     	cout<<"false"<<endl;
 
 }
-}
+
