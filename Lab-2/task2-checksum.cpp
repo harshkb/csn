@@ -62,8 +62,8 @@ int main()
 		{
 			val = hex_val(i);
 			continue;
-		}
-		temp += hex_val(i);
+		
+}		temp += hex_val(i);
 	}
 	while(temp>=(1<<16))
 		temp = (temp%(1<<16)) + (temp>>16);

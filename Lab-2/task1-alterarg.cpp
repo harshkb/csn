@@ -26,17 +26,17 @@ cin>>datan>>poly;
     
     if(datan[0]=='0')
     {
-    	 datan.replace(0,1,"1");
-    	
+    	 datan.replace(0,1,"1")
+;    	
     }
     else
     {
     	 datan.replace(0,1,"0");
     	
     }
-
     
-    
+   
+ 
     
       int i=0;
       while(i<datan.length()-poly.length()+1)
