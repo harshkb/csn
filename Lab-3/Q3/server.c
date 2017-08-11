@@ -4,9 +4,10 @@
 #include <string.h>
 #include <arpa/inet.h>
 
+char buffer[1024];
 int main(){
   int welcomeSocket, newSocket;
-  char buffer[1024];
+  
   struct sockaddr_in serverAddr;
   struct sockaddr_storage serverStorage;
   socklen_t addr_size;
@@ -33,7 +34,7 @@ int main(){
     printf("Listening\n");
   else
     printf("Error\n");
-
+while(1){
   /*---- Accept call creates a new socket for the incoming connection ----*/
   addr_size = sizeof serverStorage;
   newSocket = accept(welcomeSocket, (struct sockaddr *) &serverStorage, &addr_size);
@@ -44,6 +45,7 @@ int main(){
   send(newSocket,buffer,12,0);
   recv(newSocket, buffer, 1024, 0);
    printf("Data received by server: %s\n",buffer); 
+ }
 
   return 0;
 }

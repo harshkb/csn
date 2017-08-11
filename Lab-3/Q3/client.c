@@ -4,9 +4,11 @@
 #include <string.h>
 #include <arpa/inet.h>
 
+char buffer[1024];
+
 int main(){
   int clientSocket;
-  char buffer[1024];
+  
   struct sockaddr_in serverAddr;
   socklen_t addr_size;
 
