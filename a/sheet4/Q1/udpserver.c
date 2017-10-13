@@ -1,0 +1,96 @@
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <netdb.h>
+#include <time.h>
+
+
+ 
+
+ 
+
+int main()
+{
+ 
+  char buf[2000];
+  // char file_buffer[2000];
+  int sd,connfd,len;
+ 
+  struct sockaddr_in servaddr,cliaddr;
+ 
+  sd = socket(PF_INET, SOCK_DGRAM, 0);
+ 
+  if(sd==-1)
+    {
+      printf(" socket not created in server\n");
+      exit(0);
+    }
+  else
+    {
+      printf("socket created in  server\n");
+    }
+ 
+  bzero(&servaddr, sizeof(servaddr));
+ 
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_addr.s_addr = INADDR_ANY;
+  servaddr.sin_port = htons(7802);
+ 
+  if ( bind(sd, (struct sockaddr *)&servaddr, sizeof(servaddr)) != 0 )
+    printf("Not binded\n");
+  else
+    printf("Binded\n");
+ 
+
+ 
+  len=sizeof(cliaddr);
+
+  recvfrom(sd,buf,1024,0,
+   (struct sockaddr *)&cliaddr, &len);
+ 
+  // printf("%s\n",buff);
+  // /* */
+  // FILE *fp;
+  // fp=fopen(buff,"r");
+  // if(fp==NULL)
+  //   {
+  //     printf("file does not exist\n");
+  //   }
+ 
+  // fseek(fp,0,SEEK_END);
+  // size_t file_size=ftell(fp);
+  // fseek(fp,0,SEEK_SET);
+  // if(fread(file_buffer,file_size,1,fp)<=0)
+  //   {
+  //     printf("unable to copy file into buffer\n");
+  //     exit(1);
+  //   }
+   bzero(buf,sizeof(buf));
+   time_t cur_time;
+  //  struct tm *loc_time;
+  // loc_time = localtime (&curtime);
+   //Getting current time of system
+   cur_time = time (NULL);
+   strcpy (buf,ctime(&cur_time));
+   // Converting current time to lo
+  if(sendto(sd,buf,strlen(buf),0,  (struct sockaddr *)&cliaddr, len)<0)    {
+    printf("error in sending the file\n");
+    exit(1);
+  }
+ 
+ 
+
+  /* */
+ // close(sd);
+ 
+  return(0);
+}
